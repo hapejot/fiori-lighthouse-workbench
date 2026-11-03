@@ -1,0 +1,40 @@
+{
+	# E-Mail für Let's Encrypt Benachrichtigungen (optional, aber empfohlen)
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# Requests an /oauth2/* werden ungeprüft an oauth2-proxy weitergereicht
+	# (Login-Start, Callback, Logout etc.)
+	handle /oauth2/* {
+		reverse_proxy oauth2-proxy:4180 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-Uri {uri}
+		}
+	}
+
+	# Alle anderen Requests werden zuerst gegen oauth2-proxy geprüft
+	handle {
+		forward_auth oauth2-proxy:4180 {
+			uri /oauth2/auth
+			header_up X-Real-IP {remote_host}
+
+			# Diese Header liefert oauth2-proxy nach erfolgreichem Login zurück
+			# (benötigt OAUTH2_PROXY_SET_XAUTHREQUEST=true) und werden an den
+			# Application Server weitergereicht.
+			copy_headers X-Auth-Request-User X-Auth-Request-Email X-Auth-Request-Preferred-Username X-Auth-Request-Groups
+
+			# Bei 401 (nicht eingeloggt) zur Login-Seite umleiten
+			@error status 401
+			handle_response @error {
+				redir * /oauth2/sign_in?rd={scheme}://{host}{uri}
+			}
+		}
+
+		# Erst nach erfolgreicher Auth wird an den eigentlichen App-Server weitergeleitet.
+		# Ziel ist über die Umgebungsvariable APP_UPSTREAM konfigurierbar (siehe .env)
+		reverse_proxy {$APP_UPSTREAM}
+	}
+}

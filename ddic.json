@@ -1,0 +1,246 @@
+{
+  "apps": [
+    {"name":"customers","icon":"sap-icon://customer","main_entity":"Customer","package":{"name":"workbench"},"subtitle":"Firmen und Organisationen","title":"Kunden"},
+    {"name":"contacts","icon":"sap-icon://contacts","main_entity":"Contact","package":{"name":"workbench"},"subtitle":"Personen beim Kunden","title":"Ansprechpartner"},
+    {"name":"projects","icon":"sap-icon://project-definition-triangle","main_entity":"Project","package":{"name":"workbench"},"subtitle":"Laufende und geplante Projekte","title":"Projekte"},
+    {"name":"tasks","icon":"sap-icon://task","main_entity":"Task","package":{"name":"workbench"},"subtitle":"To-dos je Projekt","title":"Aufgaben"},
+    {"name":"notes","icon":"sap-icon://notes","main_entity":"Note","package":{"name":"workbench"},"subtitle":"Arbeitsnotizen","title":"Notizen"},
+    {"name":"articles","icon":"sap-icon://document-text","main_entity":"Article","package":{"name":"workbench"},"subtitle":"Anleitungen und Erfahrungen","title":"Wissensartikel"},
+    {"name":"devobjects","icon":"sap-icon://developer-settings","main_entity":"DevObject","package":{"name":"workbench"},"subtitle":"Verweise auf Tabellen, Klassen, Services","title":"Entwicklungsobjekte"},
+    {"name":"releases","icon":"sap-icon://along-stacked-chart","main_entity":"Release","package":{"name":"workbench"},"subtitle":"Versionen und Freigaben","title":"Releases"},
+    {"name":"appointments","icon":"sap-icon://calendar","main_entity":"Appointment","package":{"name":"workbench"},"subtitle":"Terminplanung","title":"Termine"}
+  ],
+  "entities": [
+    {
+      "name": "Customer",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"industry","edm_type":"Edm.String","label":"Branche","max_length":100}},
+        {"Atom":{"name":"city","edm_type":"Edm.String","label":"Stadt","max_length":100}},
+        {"Atom":{"name":"website","edm_type":"Edm.String","label":"Website","max_length":255,"link":true}}
+      ],
+      "package": "workbench",
+      "type_name": "Kunde",
+      "type_name_plural": "Kunden"
+    },
+    {
+      "name": "Contact",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"email","edm_type":"Edm.String","label":"E-Mail","max_length":255}},
+        {"Atom":{"name":"phone","edm_type":"Edm.String","label":"Telefon","max_length":50}},
+        {"Atom":{"name":"role","edm_type":"Edm.String","label":"Rolle","max_length":100}}
+      ],
+      "package": "workbench",
+      "type_name": "Ansprechpartner",
+      "type_name_plural": "Ansprechpartner",
+      "list_views": [
+        {
+          "name": "default",
+          "columns": [ "name", "email", "role", "customer" ]
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"status","edm_type":"Edm.String","label":"Status","max_length":20,"value_list":{"FieldValueList":{"list_id":"79714635-4b3e-51a6-be78-dc009beb5f3c","prefer_dialog":false}}}},
+        {"Atom":{"name":"start_date","edm_type":"Edm.Date","label":"Start"}},
+        {"Atom":{"name":"end_date","edm_type":"Edm.Date","label":"Ende"}},
+        {"Atom":{"name":"goal","edm_type":"Edm.String","label":"Ziel","max_length":2000}}
+      ],
+      "package": "workbench",
+      "type_name": "Projekt",
+      "type_name_plural": "Projekte"
+    },
+    {
+      "name": "Task",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"status","edm_type":"Edm.String","label":"Status","max_length":20,"value_list":{"FieldValueList":{"list_id":"26ab814e-7770-5cd7-a984-67a8b2e9180b","prefer_dialog":false}}}},
+        {"Atom":{"name":"priority","edm_type":"Edm.String","label":"Priorität","max_length":10,"value_list":{"FieldValueList":{"list_id":"3f4947ee-37db-5959-ad93-44ba98efd1a8","prefer_dialog":false}}}},
+        {"Atom":{"name":"due_date","edm_type":"Edm.Date","label":"Fällig"}},
+        {"Atom":{"name":"description","edm_type":"Edm.String","label":"Beschreibung","max_length":2000}}
+      ],
+      "package": "workbench",
+      "type_name": "Aufgabe",
+      "type_name_plural": "Aufgaben"
+    },
+    {
+      "name": "Note",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"body","edm_type":"Edm.String","label":"Text","multiline":true}},
+        {"Atom":{"name":"created_on","edm_type":"Edm.DateTimeOffset","label":"Erstellt"}}
+      ],
+      "package": "workbench",
+      "type_name": "Notiz",
+      "type_name_plural": "Notizen",
+      "list_views": [
+        {
+          "name": "default",
+          "columns": [ "name", "created_on" ]
+        }
+      ]
+    },
+    {
+      "name": "Article",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"category","edm_type":"Edm.String","label":"Kategorie","max_length":20,"value_list":{"FieldValueList":{"list_id":"ac29a614-ee3e-52e6-a7e3-7878d81a58ca","prefer_dialog":false}}}},
+        {"Atom":{"name":"tags","edm_type":"Edm.String","label":"Schlagworte","max_length":255}},
+        {"Atom":{"name":"body","edm_type":"Edm.String","label":"Text","multiline":true}},
+        {"Atom":{"name":"updated_on","edm_type":"Edm.DateTimeOffset","label":"Geändert"}}
+      ],
+      "package": "workbench",
+      "type_name": "Wissensartikel",
+      "type_name_plural": "Wissensartikel"
+    },
+    {
+      "name": "DevObject",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"kind","edm_type":"Edm.String","label":"Art","max_length":20,"value_list":{"FieldValueList":{"list_id":"bbe23c2f-b744-5ded-acd1-752b0150061e","prefer_dialog":false}}}},
+        {"Atom":{"name":"location","edm_type":"Edm.String","label":"Ort / Pfad / URL","max_length":500}},
+        {"Atom":{"name":"description","edm_type":"Edm.String","label":"Beschreibung","max_length":2000}}
+      ],
+      "package": "workbench",
+      "type_name": "Entwicklungsobjekt",
+      "type_name_plural": "Entwicklungsobjekte"
+    },
+    {
+      "name": "Release",
+      "fields": [
+        {"Atom":{"name":"name","label":"Name","edm_type":"Edm.String","max_length":255}},
+        {"Atom":{"name":"version","edm_type":"Edm.String","label":"Version","max_length":50}},
+        {"Atom":{"name":"status","edm_type":"Edm.String","label":"Status","max_length":20,"value_list":{"FieldValueList":{"list_id":"25a25f1d-c077-5f20-81b1-997f20bc359b","prefer_dialog":false}}}},
+        {"Atom":{"name":"release_date","edm_type":"Edm.Date","label":"Datum"}},
+        {"Atom":{"name":"changelog","edm_type":"Edm.String","label":"Changelog","max_length":10000}}
+      ],
+      "package": "workbench",
+      "type_name": "Release",
+      "type_name_plural": "Releases"
+    },
+    {
+      "name": "Appointment",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"kind","edm_type":"Edm.String","label":"Art","max_length":20,"value_list":{"FieldValueList":{"list_id":"88c1f686-bc2f-5026-b850-c90c328c520c","prefer_dialog":false}}}},
+        {"Atom":{"name":"starts_at","edm_type":"Edm.DateTimeOffset","label":"Beginn"}},
+        {"Atom":{"name":"ends_at","edm_type":"Edm.DateTimeOffset","label":"Ende"}},
+        {"Atom":{"name":"location","edm_type":"Edm.String","label":"Ort","max_length":255}},
+        {"Atom":{"name":"notes","edm_type":"Edm.String","label":"Notizen","max_length":2000}}
+      ],
+      "package": "workbench",
+      "type_name": "Termin",
+      "type_name_plural": "Termine"
+    },
+    {
+      "name": "ProjectMember",
+      "package": "workbench",
+      "type_name": "Projektmitglied",
+      "type_name_plural": "Projektmitglieder",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","max_length":100,"label":"Rolle"}}
+      ],
+      "list_views": [
+        {
+          "name": "default",
+          "columns": [ "name", "contact" ]
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "workbench"
+    }
+  ],
+  "relationships": [
+    {"name":"customer_contacts","many":"Contact","many_label":"Kunde","many_property":"customer","one":"Customer","one_field":"_Contacts","one_label":"Ansprechpartner","package":"workbench","owned":true},
+    {"name":"customer_projects","many":"Project","many_label":"Kunde","many_property":"customer","one":"Customer","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
+    {"name":"contact_prim_projects","many":"Project","many_label":"Primärer Ansprechpartner","many_property":"primary_contact","one":"Contact","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
+    {"name":"project_tasks","many":"Task","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Tasks","one_label":"Aufgaben","package":"workbench","owned":true},
+    {"name":"project_notes","many":"Note","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Notes","one_label":"Notizen","package":"workbench","owned":true},
+    {"name":"project_articles","many":"Article","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Articles","one_label":"Wissensartikel","package":"workbench"},
+    {"name":"project_devobjects","many":"DevObject","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_DevObjects","one_label":"Entwicklungsobjekte","package":"workbench","owned":true},
+    {"name":"project_releases","many":"Release","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Releases","one_label":"Releases","package":"workbench"},
+    {"name":"project_appointments","many":"Appointment","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Appointments","one_label":"Termine","package":"workbench"},
+    {"name":"project_members","many":"ProjectMember","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Members","one_label":"Mitglieder","package":"workbench","owned":true},
+    {"name":"contact_project","many":"ProjectMember","many_label":"Kontakt","many_property":"contact","one":"Contact","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
+    {"name":"contact_appointments","many":"Appointment","many_label":"Ansprechpartner","many_property":"contact","one":"Contact","one_field":"_Appointments","one_label":"Termine","package":"workbench"}
+  ],
+  "value_lists": [
+    {
+      "name": "ProjectStatus",
+      "id": "79714635-4b3e-51a6-be78-dc009beb5f3c",
+      "values": [
+        {"code":"planned","label":"Geplant","sort":1},
+        {"code":"active","label":"Aktiv","sort":2},
+        {"code":"paused","label":"Pausiert","sort":3},
+        {"code":"done","label":"Abgeschlossen","sort":4}
+      ]
+    },
+    {
+      "name": "TaskStatus",
+      "id": "26ab814e-7770-5cd7-a984-67a8b2e9180b",
+      "values": [
+        {"code":"open","label":"Offen","sort":1},
+        {"code":"in_progress","label":"In Arbeit","sort":2},
+        {"code":"waiting","label":"Wartet","sort":3},
+        {"code":"done","label":"Erledigt","sort":4}
+      ]
+    },
+    {
+      "name": "Priority",
+      "id": "3f4947ee-37db-5959-ad93-44ba98efd1a8",
+      "values": [
+        {"code":"low","label":"Niedrig","sort":1},
+        {"code":"medium","label":"Mittel","sort":2},
+        {"code":"high","label":"Hoch","sort":3}
+      ]
+    },
+    {
+      "name": "ArticleCategory",
+      "id": "ac29a614-ee3e-52e6-a7e3-7878d81a58ca",
+      "values": [
+        {"code":"howto","label":"Anleitung","sort":1},
+        {"code":"reference","label":"Referenz","sort":2},
+        {"code":"decision","label":"Entscheidung","sort":3},
+        {"code":"lesson","label":"Erfahrung","sort":4}
+      ]
+    },
+    {
+      "name": "DevKind",
+      "id": "bbe23c2f-b744-5ded-acd1-752b0150061e",
+      "values": [
+        {"code":"table","label":"Tabelle","sort":1},
+        {"code":"class","label":"Klasse","sort":2},
+        {"code":"program","label":"Programm","sort":3},
+        {"code":"service","label":"Service","sort":4},
+        {"code":"interface","label":"Schnittstelle","sort":5},
+        {"code":"config","label":"Konfiguration","sort":6}
+      ]
+    },
+    {
+      "name": "ReleaseStatus",
+      "id": "25a25f1d-c077-5f20-81b1-997f20bc359b",
+      "values": [
+        {"code":"planned","label":"Geplant","sort":1},
+        {"code":"in_test","label":"In Test","sort":2},
+        {"code":"released","label":"Freigegeben","sort":3}
+      ]
+    },
+    {
+      "name": "AppointmentKind",
+      "id": "88c1f686-bc2f-5026-b850-c90c328c520c",
+      "values": [
+        {"code":"meeting","label":"Besprechung","sort":1},
+        {"code":"call","label":"Telefonat","sort":2},
+        {"code":"deadline","label":"Termin/Frist","sort":3},
+        {"code":"review","label":"Review","sort":4}
+      ]
+    }
+  ]
+}
