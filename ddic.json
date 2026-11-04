@@ -8,7 +8,9 @@
     {"name":"articles","icon":"sap-icon://document-text","main_entity":"Article","package":{"name":"workbench"},"subtitle":"Anleitungen und Erfahrungen","title":"Wissensartikel"},
     {"name":"devobjects","icon":"sap-icon://developer-settings","main_entity":"DevObject","package":{"name":"workbench"},"subtitle":"Verweise auf Tabellen, Klassen, Services","title":"Entwicklungsobjekte"},
     {"name":"releases","icon":"sap-icon://along-stacked-chart","main_entity":"Release","package":{"name":"workbench"},"subtitle":"Versionen und Freigaben","title":"Releases"},
-    {"name":"appointments","icon":"sap-icon://calendar","main_entity":"Appointment","package":{"name":"workbench"},"subtitle":"Terminplanung","title":"Termine"}
+    {"name":"appointments","icon":"sap-icon://calendar","main_entity":"Appointment","package":{"name":"workbench"},"subtitle":"Terminplanung","title":"Termine"},
+    {"name":"timeentries","icon":"sap-icon://calendar","main_entity":"TimeEntry","package":{"name":"workbench"},"subtitle":"Zeiteinträge","title":"Zeiten"}
+
   ],
   "entities": [
     {
@@ -137,6 +139,16 @@
       "type_name_plural": "Termine"
     },
     {
+      "name": "TimeEntry",
+      "fields": [
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"start","edm_type":"Edm.DateTimeOffset","label":"Beginn"}}
+      ],
+      "package": "workbench",
+      "type_name": "Termin",
+      "type_name_plural": "Termine"
+    },
+    {
       "name": "ProjectMember",
       "package": "workbench",
       "type_name": "Projektmitglied",
@@ -167,6 +179,7 @@
     {"name":"project_devobjects","many":"DevObject","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_DevObjects","one_label":"Entwicklungsobjekte","package":"workbench","owned":true},
     {"name":"project_releases","many":"Release","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Releases","one_label":"Releases","package":"workbench"},
     {"name":"project_appointments","many":"Appointment","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Appointments","one_label":"Termine","package":"workbench"},
+    {"name":"project_times","many":"TimeEntry","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_TimeEntries","one_label":"Zeiten","package":"workbench"},
     {"name":"project_members","many":"ProjectMember","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Members","one_label":"Mitglieder","package":"workbench","owned":true},
     {"name":"contact_project","many":"ProjectMember","many_label":"Kontakt","many_property":"contact","one":"Contact","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
     {"name":"contact_appointments","many":"Appointment","many_label":"Ansprechpartner","many_property":"contact","one":"Contact","one_field":"_Appointments","one_label":"Termine","package":"workbench"}
