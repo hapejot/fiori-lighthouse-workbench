@@ -141,8 +141,7 @@
     {
       "name": "TimeEntry",
       "fields": [
-        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
-        {"Atom":{"name":"start","edm_type":"Edm.DateTimeOffset","label":"Beginn"}}
+        {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}}
       ],
       "package": "workbench",
       "type_name": "Termin",
@@ -254,6 +253,33 @@
         {"code":"deadline","label":"Termin/Frist","sort":3},
         {"code":"review","label":"Review","sort":4}
       ]
+    }
+  ],
+  "components": [
+    {
+      "name": "TimeRange",
+      "kind": "time_range",
+      "script": "components/TimeRange",
+      "unit": "minutes",
+      "step_minutes": 15
+    }
+  ],
+  "component_uses": [
+    {
+      "entity": "TimeEntry",
+      "component": "TimeRange",
+      "instance": "duration",
+      "fields": {
+        "start": "starts_at",
+        "end": "ends_at",
+        "duration": "duration_minutes"
+      },
+      "labels": {
+        "start": "Beginn",
+        "end": "Ende",
+        "duration": "Dauer (Minuten)"
+      },
+      "section_title": "Zeitraum"
     }
   ]
 }
