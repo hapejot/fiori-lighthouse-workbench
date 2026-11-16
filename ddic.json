@@ -47,14 +47,21 @@
       "name": "Project",
       "fields": [
         {"Atom":{"name":"name","edm_type":"Edm.String","label":"Name","max_length":255}},
+        {"Atom":{"name":"external_id","edm_type":"Edm.String","label":"Externes Kennzeichen","max_length":255}},
         {"Atom":{"name":"status","edm_type":"Edm.String","label":"Status","max_length":20,"value_list":{"FieldValueList":{"list_id":"79714635-4b3e-51a6-be78-dc009beb5f3c","prefer_dialog":false}}}},
         {"Atom":{"name":"start_date","edm_type":"Edm.Date","label":"Start"}},
         {"Atom":{"name":"end_date","edm_type":"Edm.Date","label":"Ende"}},
-        {"Atom":{"name":"goal","edm_type":"Edm.String","label":"Ziel","max_length":2000}}
+        {"Atom":{"name":"goal","edm_type":"Edm.String","label":"Ziel","max_length":2000, "multiline":true}}
       ],
       "package": "workbench",
       "type_name": "Projekt",
-      "type_name_plural": "Projekte"
+      "type_name_plural": "Projekte",
+      "list_views": [
+        {
+          "name": "default",
+          "columns": [ "name", "customer", "primary_contact", "created_on" ]
+        }
+      ]
     },
     {
       "name": "Task",
