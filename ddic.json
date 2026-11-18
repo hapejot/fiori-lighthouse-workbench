@@ -56,11 +56,17 @@
       "package": "workbench",
       "type_name": "Projekt",
       "type_name_plural": "Projekte",
+      "data_points": ["status", "external_id"],
       "list_views": [
         {
           "name": "default",
           "columns": [ "name", "customer", "primary_contact", "created_on" ]
         }
+      ],
+      "facets": [
+        {"facet": "General", "fields":["name"]},
+        {"facet": "goal", "title":"Ziel"},
+        {"facet": "Default", "title": "Weitere Angaben"}
       ]
     },
     {
