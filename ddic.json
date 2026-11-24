@@ -76,7 +76,12 @@
         {"Atom":{"name":"status","edm_type":"Edm.String","label":"Status","max_length":20,"value_list":{"FieldValueList":{"list_id":"26ab814e-7770-5cd7-a984-67a8b2e9180b","prefer_dialog":false}}}},
         {"Atom":{"name":"priority","edm_type":"Edm.String","label":"Priorität","max_length":10,"value_list":{"FieldValueList":{"list_id":"3f4947ee-37db-5959-ad93-44ba98efd1a8","prefer_dialog":false}}}},
         {"Atom":{"name":"due_date","edm_type":"Edm.Date","label":"Fällig"}},
-        {"Atom":{"name":"description","edm_type":"Edm.String","label":"Beschreibung","max_length":2000}}
+        {"Atom":{"name":"description","edm_type":"Edm.String","label":"Beschreibung","max_length":2000, "multiline":true}}
+      ],
+      "facets": [
+        {"facet": "General", "fields":["name"]},
+        {"facet": "description", "title":"Beschreibung"},
+        {"facet": "Default", "title": "Weitere Angaben"}
       ],
       "package": "workbench",
       "type_name": "Aufgabe",
