@@ -184,7 +184,7 @@
   "relationships": [
     {"name":"customer_contacts","many":"Contact","many_label":"Kunde","many_property":"customer","one":"Customer","one_field":"_Contacts","one_label":"Ansprechpartner","package":"workbench","owned":true},
     {"name":"customer_projects","many":"Project","many_label":"Kunde","many_property":"customer","one":"Customer","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
-    {"name":"contact_prim_projects","many":"Project","many_label":"Primärer Ansprechpartner","many_property":"primary_contact","one":"Contact","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
+    {"name":"contact_prim_projects","many":"Project","many_label":"Primärer Ansprechpartner","many_property":"primary_contact","one":"Contact","one_field":"_Projects","one_label":"Projekte","package":"workbench","value_list_source":{"entity":"ProjectMember","key_property":"contact","use_local_draft":true},"value_list_filters":[{"local_property":"ID","target_property":"project"}]},
     {"name":"project_tasks","many":"Task","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Tasks","one_label":"Aufgaben","package":"workbench","owned":true},
     {"name":"project_notes","many":"Note","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Notes","one_label":"Notizen","package":"workbench","owned":true},
     {"name":"project_articles","many":"Article","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Articles","one_label":"Wissensartikel","package":"workbench"},
@@ -193,7 +193,7 @@
     {"name":"project_appointments","many":"Appointment","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Appointments","one_label":"Termine","package":"workbench"},
     {"name":"project_times","many":"TimeEntry","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_TimeEntries","one_label":"Zeiten","package":"workbench"},
     {"name":"project_members","many":"ProjectMember","many_label":"Projekt","many_property":"project","one":"Project","one_field":"_Members","one_label":"Mitglieder","package":"workbench","owned":true},
-    {"name":"contact_project","many":"ProjectMember","many_label":"Kontakt","many_property":"contact","one":"Contact","one_field":"_Projects","one_label":"Projekte","package":"workbench"},
+    {"name":"contact_project","many":"ProjectMember","many_label":"Kontakt","many_property":"contact","one":"Contact","one_field":"_Memberships","one_label":"Projektmitgliedschaften","package":"workbench"},
     {"name":"contact_appointments","many":"Appointment","many_label":"Ansprechpartner","many_property":"contact","one":"Contact","one_field":"_Appointments","one_label":"Termine","package":"workbench"}
   ],
   "value_lists": [
